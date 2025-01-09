@@ -9,14 +9,19 @@ cmake_minimum_required ( VERSION 3.1.0...3.27.0 )
 project ( RTWeekend LANGUAGES CXX )
 
 # Set to C++11
-set ( CMAKE_CXX_STANDARD          11 )
+set ( CMAKE_CXX_STANDARD          17 )
 set ( CMAKE_CXX_STANDARD_REQUIRED ON )
 set ( CMAKE_CXX_EXTENSIONS        OFF )
 
 # Source
 
+set ( EXTERNAL_DIR
+  src/external
+)
+
 set ( EXTERNAL
   src/external/stb_image.h
+  src/external/stb_image_write.h
 )
 
 set ( SOURCE_ONE_WEEKEND
@@ -106,6 +111,7 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # Executables
+include_directories(${EXTERNAL_DIR})
 add_executable(inOneWeekend      ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
 add_executable(theNextWeek       ${EXTERNAL} ${SOURCE_NEXT_WEEK})
 add_executable(theRestOfYourLife ${EXTERNAL} ${SOURCE_REST_OF_YOUR_LIFE})
